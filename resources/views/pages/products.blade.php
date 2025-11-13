@@ -9,19 +9,21 @@
 
   <div class="grid md:grid-cols-3 gap-6">
     <!-- Example card -->
+    @foreach ($products as $product)
     <div class="bg-white rounded-lg shadow p-4">
-      <img src="https://via.placeholder.com/200" alt="Product Image" class="rounded w-full h-48 object-cover mb-3">
-      <h2 class="text-lg font-semibold">Product Name</h2>
-      <p class="text-gray-600">Short description...</p>
-      <p class="font-bold mt-2">$120</p>
+      <img src="{{ $product->image }}" alt="Product Image" class="rounded w-full h-48 object-cover mb-3">
+      <h2 class="text-lg font-semibold">{{ $product->name }}</h2>
+      <p class="text-gray-600">{{ $product->description }}</p>
+      <p class="font-bold mt-2">${{ $product->price }}</p>
       <div class="flex justify-between mt-4">
-        <a href="{{ url('/products/1') }}" class="text-blue-600 hover:underline">View</a>
+        <a href="{{ url('/products/show/' . $product->id) }}" class="text-blue-600 hover:underline">View</a>
         <a href="{{ url('/products/1/edit') }}" class="text-yellow-600 hover:underline">Edit</a>
         <form action="#" method="POST">
           <button type="submit" class="text-red-600 hover:underline">Delete</button>
         </form>
       </div>
     </div>
+    @endforeach
   </div>
 </div>
 @endsection
