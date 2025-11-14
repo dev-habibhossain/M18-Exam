@@ -3,7 +3,7 @@
 @section('content')
 <div class="max-w-2xl mx-auto bg-white p-6 mt-8 rounded shadow">
   <h2 class="text-xl font-bold mb-4">Add New Product</h2>
-  <form action="/products/store" method="POST"  class="space-y-4">
+  <form action="{{ route('products.store') }}" method="POST"  class="space-y-4">
     @csrf
     <div>
       <label class="block font-medium">Product ID</label>

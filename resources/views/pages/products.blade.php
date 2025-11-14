@@ -16,7 +16,7 @@
 <div class="container mx-auto px-4 py-8">
   <div class="flex justify-between items-center mb-6">
     <h1 class="text-2xl font-bold">All Products</h1>
-    <a href="{{ url('/products/create') }}" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Add Product</a>
+    <a href="{{ route('products.create') }}" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Add Product</a>
   </div>
 
   <div class="grid md:grid-cols-3 gap-6">
@@ -37,5 +37,6 @@
     </div>
     @endforeach
   </div>
+  {{ $products->links('pagination::tailwind') }}
 </div>
 @endsection

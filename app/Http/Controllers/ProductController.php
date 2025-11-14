@@ -14,14 +14,18 @@ class ProductController extends Controller
     public function products()
     {
 
-        $products = DB::table('product')->get();
+        $products = DB::table('product')->orderBy('id', 'desc')->paginate(6);
 
         return view('pages.products', ['products' => $products]);
     }
+    
+    
     public function create()
     {
         return view('pages.create');
     }
+
+
     public function store(Request $request)
     {
         $name = $request->input('name');
@@ -43,6 +47,7 @@ class ProductController extends Controller
         return redirect('/products')->with('success', 'Product added successfully!');
         
     }
+
     public function show($id)
     {
         $product = DB::table('product')->where('id', $id)->first();
@@ -53,6 +58,6 @@ class ProductController extends Controller
     {
         $product = DB::table('product')->where('id', $id)->first();
 
-        return view('pages.edit', ['product' => $product]);
+        return view('pages.edit', ['product' => $product])->with('success', 'Product updated successfully!');
     }
 }

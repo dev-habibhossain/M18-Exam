@@ -12,7 +12,7 @@
     <a href="{{ url('/products') }}" class="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition">
       View All Products
     </a>
-    <a href="{{ url('/products/create') }}" class="bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 transition">
+    <a href="{{ route('products.create') }}" class="bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 transition">
       Add New Product
     </a>
   </div>
