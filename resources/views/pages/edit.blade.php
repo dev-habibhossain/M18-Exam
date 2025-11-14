@@ -6,26 +6,26 @@
   <form action="#" method="POST" enctype="multipart/form-data" class="space-y-4">
     <div>
       <label class="block font-medium">Name</label>
-      <input type="text" value="Old Product Name" class="w-full border rounded p-2">
+      <input type="text" value="{{ $product->name }}" name="name" class="w-full border rounded p-2">
     </div>
     <div>
       <label class="block font-medium">Description</label>
-      <textarea class="w-full border rounded p-2">Old Description</textarea>
+      <textarea name="description" class="w-full border rounded p-2">{{ $product->description }}</textarea>
     </div>
     <div class="grid grid-cols-2 gap-4">
       <div>
         <label class="block font-medium">Price</label>
-        <input type="number" value="120" class="w-full border rounded p-2">
+        <input type="number" value="{{ $product->price }}" name="price" class="w-full border rounded p-2">
       </div>
       <div>
         <label class="block font-medium">Stock</label>
-        <input type="number" value="15" class="w-full border rounded p-2">
+        <input type="number" value="{{ $product->stock }}" name="stock" class="w-full border rounded p-2">
       </div>
     </div>
     <div>
       <label class="block font-medium">Image</label>
-      <input type="file" class="w-full border rounded p-2">
-      <img src="https://via.placeholder.com/150" class="mt-2 rounded w-32" alt="Current Image">
+      <input type="file" name="image" class="w-full border rounded p-2">
+      <img src="{{ $product->image }}" class="mt-2 rounded w-32" alt="Current Image">
     </div>
     <button type="submit" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">Update</button>
   </form>

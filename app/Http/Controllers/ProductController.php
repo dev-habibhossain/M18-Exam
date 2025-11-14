@@ -22,14 +22,37 @@ class ProductController extends Controller
     {
         return view('pages.create');
     }
+    public function store(Request $request)
+    {
+        $name = $request->input('name');
+        $product_id = $request->input('product_id');
+        $description = $request->input('description');
+        $stock = $request->input('stock');
+        $price = $request->input('price');
+        $image = 'images';
+
+        DB::table('product')->insert([
+            'name' => $name,
+            'product_id' => $product_id,
+            'description' => $description,
+            'stock' => $stock,
+            'price' => $price,
+            'image' => $image,
+        ]);
+
+        return redirect('/products')->with('success', 'Product added successfully!');
+        
+    }
     public function show($id)
     {
         $product = DB::table('product')->where('id', $id)->first();
 
         return view('pages.show', ['product' => $product]);    
     }
-    public function edit()
+    public function edit($id)
     {
-        return view('pages.edit');
+        $product = DB::table('product')->where('id', $id)->first();
+
+        return view('pages.edit', ['product' => $product]);
     }
 }
