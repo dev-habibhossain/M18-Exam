@@ -16,7 +16,7 @@ class ProductController extends Controller
 
         $products = DB::table('product')->orderBy('id', 'desc')->paginate(6);
 
-        return view('pages.products', ['products' => $products]);
+        return view('pages.index', ['products' => $products]);
     }
     
     
