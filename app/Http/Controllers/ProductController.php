@@ -28,12 +28,15 @@ class ProductController extends Controller
 
     public function store(Request $request)
     {
+        $imagePath = null;
         $name = $request->input('name');
         $product_id = $request->input('product_id');
         $description = $request->input('description');
         $stock = $request->input('stock');
         $price = $request->input('price');
-        $image = 'images';
+        if($request->hasFile('image')){
+                $imagePath = $request->file('image')->store('images', 'public');
+            }
 
         DB::table('product')->insert([
             'name' => $name,
@@ -41,7 +44,7 @@ class ProductController extends Controller
             'description' => $description,
             'stock' => $stock,
             'price' => $price,
-            'image' => $image,
+            'image' => $imagePath
         ]);
 
         return redirect('/products')->with('success', 'Product added successfully!');

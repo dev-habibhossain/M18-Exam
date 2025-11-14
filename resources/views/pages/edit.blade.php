@@ -25,7 +25,7 @@
     <div>
       <label class="block font-medium">Image</label>
       <input type="file" name="image" class="w-full border rounded p-2">
-      <img src="{{ $product->image }}" class="mt-2 rounded w-32" alt="Current Image">
+      <img src="{{ asset('storage/' . $product->image) }}" class="mt-2 rounded w-32" alt="Current Image">
     </div>
     <button type="submit" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">Update</button>
   </form>
