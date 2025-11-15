@@ -30,8 +30,10 @@
       <div class="flex justify-between mt-4">
         <a href="{{ url('/products/show/' . $product->id) }}" class="text-blue-600 hover:underline">View</a>
         <a href="{{ url('/products/' . $product->id . '/edit') }}" class="text-yellow-600 hover:underline">Edit</a>
-        <form action="#" method="POST">
-          <button type="submit" class="text-red-600 hover:underline">Delete</button>
+        <form action="{{ route('product.destroy', $product->id) }}" method="POST">
+          @csrf
+          @method('DELETE')
+          <button onclick="return confirm('Are You Sure...')" type="submit" class="text-red-600 hover:underline">Delete</button>
         </form>
       </div>
     </div>

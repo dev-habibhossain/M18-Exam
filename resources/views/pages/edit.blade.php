@@ -5,6 +5,7 @@
   <h2 class="text-xl font-bold mb-4">Edit Product</h2>
   <form action="{{ route('product.update', $product->id) }}" method="POST" enctype="multipart/form-data" class="space-y-4">
     @csrf
+    @method('PUT')
     <div>
       <label class="block font-medium">Name</label>
       <input type="text" value="{{ $product->name }}" name="name" class="w-full border rounded p-2">

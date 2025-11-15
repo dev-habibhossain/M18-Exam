@@ -94,4 +94,19 @@ class ProductController extends Controller
 
         return redirect('/products')->with('success', 'Product updated successfully!');
     }
+
+    public function destroy($id){
+
+        $product = DB::table('product')->where('id', $id)->first();
+        
+        if ($product) {
+            Storage::disk('public')->delete($product->image);
+
+            DB::table('product')->where('id', $id)->delete();
+
+            return redirect('/products')->with('success', 'Product deleted successfully!');
+        } else {
+            return redirect('/products')->with('error', 'Product not found!');
+        }
+    }
 }
