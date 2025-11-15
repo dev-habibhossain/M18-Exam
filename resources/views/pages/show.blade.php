@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="max-w-3xl mx-auto bg-white p-6 mt-8 rounded shadow">
-  <img src="{{ $product->image }}" alt="Product" class="rounded w-full h-64 object-cover mb-4">
+  <img src="{{ asset('storage/' . $product->image) }}" alt="Product" class="rounded w-full h-64 object-cover mb-4">
   <h2 class="text-2xl font-bold mb-2">{{ $product->name }}</h2>
   <p class="text-gray-600 mb-2">Product ID: {{ $product->product_id}}</p>
   <p class="mb-4">{{ $product->description }}</p>

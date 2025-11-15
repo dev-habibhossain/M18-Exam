@@ -28,7 +28,7 @@
       <p class="text-gray-600">{{ $product->description }}</p>
       <p class="font-bold mt-2">${{ $product->price }}</p>
       <div class="flex justify-between mt-4">
-        <a href="{{ url('/products/show/' . $product->id) }}" class="text-blue-600 hover:underline">View</a>
+        <a href="{{ url('/products/' . $product->id) }}" class="text-blue-600 hover:underline">View</a>
         <a href="{{ url('/products/' . $product->id . '/edit') }}" class="text-yellow-600 hover:underline">Edit</a>
         <form action="{{ route('product.destroy', $product->id) }}" method="POST">
           @csrf
