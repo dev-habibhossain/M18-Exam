@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -44,7 +45,9 @@ class ProductController extends Controller
             'description' => $description,
             'stock' => $stock,
             'price' => $price,
-            'image' => $imagePath
+            'image' => $imagePath,
+            'created_at' => now(),
+            'updated_at' => now()
         ]);
 
         return redirect('/products')->with('success', 'Product added successfully!');
@@ -62,5 +65,33 @@ class ProductController extends Controller
         $product = DB::table('product')->where('id', $id)->first();
 
         return view('pages.edit', ['product' => $product])->with('success', 'Product updated successfully!');
+    }
+
+    public function update(Request $request, $id){
+        $name = $request->name;
+        $description = $request->description;
+        $stock = $request->stock;
+        $price = $request->price;
+        
+        $oldProduct = DB::table('product')->where('id', $id)->first();
+        $imagePath = $oldProduct->image;
+
+
+        if($request->hasFile('image')){
+            // Delete old image if exists
+            Storage::disk('public')->delete( $imagePath);
+            $imagePath = $request->file('image')->store('images', 'public');
+        }
+
+        DB::table('product')->where('id', $id)->update([
+            'name' => $name,
+            'description' => $description,
+            'stock' => $stock,
+            'price' => $price,
+            'image' => $imagePath,
+            'updated_at' => now()
+        ]);
+
+        return redirect('/products')->with('success', 'Product updated successfully!');
     }
 }
